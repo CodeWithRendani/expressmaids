@@ -40,14 +40,13 @@ export default function Testimonials() {
 
 function Logo({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="mx-4 inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 shadow-sm ring-1 ring-black/5">
+    <div className="mx-4 flex h-20 w-44 items-center justify-center rounded-2xl bg-white px-6 shadow-sm ring-1 ring-black/5">
       <Image
         src={src}
         alt={alt}
-        width={180}
-        height={80}
-        className="h-9 w-auto object-contain"
-        priority={false}
+        width={200}
+        height={100}
+        className="max-h-14 w-auto object-contain"
       />
     </div>
   );

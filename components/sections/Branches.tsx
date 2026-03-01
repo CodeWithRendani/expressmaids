@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 const branches = [
   {
     name: "Gauteng (Head Office)",
-    address: "61 Ann Road, Clayville East, Olifantsfontein, 1666",
-    phone: "+27 (0) 11 029 8744",
+    address: "13 Starmvrug Street HB Forum, Watermeyer, Pretoria, 0002",
+    phone: "+27 (0) 87 711 0227",
   },
   {
     name: "Polokwane Branch",

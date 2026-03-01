@@ -6,6 +6,7 @@ import Services from "../components/sections/Services";
 import Branches from "../components/sections/Branches";
 import Contact from "../components/sections/Contact";
 import About from "../components/sections/About";
+import Testimonials from "../components/sections/Testimonials";
 
 
 
@@ -20,6 +21,7 @@ export default function Home() {
       <About />
       <Services />
       <Branches />
+      <Testimonials />
       <Contact />
 
       <Footer />

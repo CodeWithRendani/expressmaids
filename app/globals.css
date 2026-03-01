@@ -50,11 +50,11 @@ body {
 }
 
 .marquee-a {
-  animation: marquee 45s linear infinite;
+  animation: marquee 60s linear infinite;
 }
 
 .marquee-b {
-  animation: marquee 45s linear infinite;
+  animation: marquee 60s linear infinite;
   transform: translateX(-100%);
 }
 

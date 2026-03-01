@@ -7,8 +7,10 @@ const logos = [
   { src: "/images/southpoint.png", alt: "South Point" },
 ];
 
-// Repeat to look like many clients
-const repeated = Array.from({ length: 12 }).flatMap(() => logos);
+// repeat a lot so it looks like many
+const row = Array.from({ length: 12 }).flatMap(() => logos);
+// duplicate again so the animation is seamless
+const track = [...row, ...row];
 
 export default function Testimonials() {
   return (
@@ -24,17 +26,10 @@ export default function Testimonials() {
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-blue-900/5 to-transparent" />
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-blue-900/5 to-transparent" />
 
-          {/* Track A */}
-          <div className="marquee-track marquee-a">
-            {repeated.map((l, i) => (
-              <Logo key={`a-${i}`} src={l.src} alt={l.alt} />
-            ))}
-          </div>
-
-          {/* Track B */}
-          <div className="marquee-track marquee-b">
-            {repeated.map((l, i) => (
-              <Logo key={`b-${i}`} src={l.src} alt={l.alt} />
+          {/* Continuous moving track */}
+          <div className="client-marquee flex w-max items-center">
+            {track.map((l, i) => (
+              <Logo key={i} src={l.src} alt={l.alt} />
             ))}
           </div>
         </div>
@@ -52,6 +47,7 @@ function Logo({ src, alt }: { src: string; alt: string }) {
         width={180}
         height={80}
         className="h-9 w-auto object-contain"
+        priority={false}
       />
     </div>
   );

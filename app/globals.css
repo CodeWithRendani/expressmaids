@@ -67,3 +67,17 @@ body {
     transform: translateX(100%);
   }
 }
+
+/* Clients marquee: slow + nonstop */
+@keyframes clientMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.client-marquee {
+  animation: clientMarquee 60s linear infinite;
+}

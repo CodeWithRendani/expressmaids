@@ -62,9 +62,10 @@ export default function About() {
             </h3>
 
             <p className="mt-4 text-gray-600 leading-relaxed">
-              With a focus on continuous improvement, ExpressMaids ensures every
-              project is handled with efficiency, attention to detail and industry
-              best practices. We work closely with clients to maintain clean, safe
+              We are NCCA and ISSA registered, 
+              with BBBEE level compliance
+              and 100% black woman ownership.
+              We work closely with clients to maintain clean, safe
               and well-managed environments.
             </p>
 

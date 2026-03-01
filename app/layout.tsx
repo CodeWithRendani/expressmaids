@@ -4,11 +4,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Expressmaids",
   description: "Professional Cleaning, Hygiene & Pest Control Services",
-
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon.ico",
   },
 };
 

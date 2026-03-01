@@ -170,7 +170,7 @@ export default function Contact() {
             <div className="mt-6 space-y-4 text-sm text-gray-900 md:text-gray-700">
               <p>
                 <strong className="text-gray-900 md:text-gray-800">📞 Phone:</strong>{" "}
-                +27 (0) 11 029 8744
+                087 711 0227
               </p>
               <p>
                 <strong className="text-gray-900 md:text-gray-800">📱 Mobile:</strong>{" "}
@@ -185,8 +185,7 @@ export default function Contact() {
                 vicky@expressmaids.co.za
               </p>
               <p>
-                <strong className="text-gray-900 md:text-gray-800">📍 Address:</strong>{" "}
-                61 Ann Road, Clayville East, Olifantsfontein
+                <strong>📍 Head Office:</strong> 13 Starmvrug Street HB Forum, Watermeyer, Pretoria, 0002
               </p>
             </div>
 

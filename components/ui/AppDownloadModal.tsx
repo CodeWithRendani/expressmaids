@@ -104,10 +104,6 @@ import { useEffect, useState } from "react";
 const playStoreUrl =
   "https://play.google.com/store/apps/details?id=com.afriwex.expressmaids";
 
-const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(
-  playStoreUrl
-)}`;
-
 export default function AppDownloadModal() {
   const [open, setOpen] = useState(false);
 
@@ -131,26 +127,26 @@ export default function AppDownloadModal() {
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
-      <div className="relative w-full max-w-[360px] rounded-3xl bg-white p-5 shadow-2xl md:max-w-[680px] md:p-6">
+      <div className="relative w-full max-w-[330px] rounded-3xl bg-white p-5 shadow-2xl md:max-w-[560px] md:p-6">
         <button
           onClick={closeModal}
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-xl text-gray-600 hover:bg-gray-200"
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-lg text-gray-600 hover:bg-gray-200"
           aria-label="Close app download popup"
         >
           ×
         </button>
 
-        <div className="grid items-center gap-5 md:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-center gap-3 md:grid-cols-[1fr_150px]">
           <div className="text-center md:text-left">
             <Image
               src="/images/logo.png"
               alt="ExpressMaids logo"
-              width={95}
-              height={40}
+              width={85}
+              height={35}
               className="mx-auto h-auto md:mx-0"
             />
 
-            <h2 className="mt-4 text-2xl font-extrabold leading-tight text-blue-900 md:text-3xl">
+            <h2 className="mt-4 text-2xl font-extrabold leading-tight text-blue-900 md:text-[28px]">
               Download the ExpressMaids App
             </h2>
 
@@ -158,53 +154,37 @@ export default function AppDownloadModal() {
               Book services, shop products and get cleaning tips from your phone.
             </p>
 
-            <div className="mt-5 flex flex-col items-center gap-4 sm:flex-row md:items-center">
-              <a
-                href={playStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Download ExpressMaids on Google Play"
-              >
-                <Image
-                  src="/images/google-play-badge.webp"
-                  alt="Get it on Google Play"
-                  width={155}
-                  height={46}
-                  className="h-auto w-[155px]"
-                />
-              </a>
-
-              <a
-                href={playStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Scan QR code to download ExpressMaids app"
-              >
-                <img
-                  src={qrCodeUrl}
-                  alt="QR code to download ExpressMaids app"
-                  width={105}
-                  height={105}
-                  className="rounded-xl border border-gray-200 p-1"
-                />
-              </a>
-            </div>
+            <a
+              href={playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-block"
+              aria-label="Download ExpressMaids on Google Play"
+            >
+              <Image
+                src="/images/google-play-badge.webp"
+                alt="Get it on Google Play"
+                width={130}
+                height={39}
+                className="h-auto w-[130px]"
+              />
+            </a>
 
             <button
               onClick={dontShowAgain}
-              className="mt-4 text-sm font-semibold text-gray-500 hover:text-blue-900"
+              className="mt-5 block text-sm font-semibold text-gray-500 hover:text-blue-900 md:mt-6"
             >
               Don&apos;t show again
             </button>
           </div>
 
-          <div className="hidden justify-center md:flex">
+          <div className="mt-2 flex justify-center md:mt-0">
             <Image
               src="/images/app-phone.png"
               alt="ExpressMaids mobile app screen"
-              width={190}
-              height={310}
-              className="h-auto w-[185px] object-contain"
+              width={145}
+              height={235}
+              className="h-auto w-[120px] object-contain md:w-[145px]"
               priority
             />
           </div>

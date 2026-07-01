@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <Image
           src="/images/hero.jpg"
-          alt="ExpressMaids cleaning services"
+          alt="Professional house, office, commercial and industrial cleaning services by ExpressMaids in South Africa"
           fill
           priority
           className="object-cover"

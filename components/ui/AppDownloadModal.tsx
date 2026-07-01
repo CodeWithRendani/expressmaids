@@ -202,11 +202,12 @@ export default function AppDownloadModal() {
 
           <div className="hidden md:block">
             <Image
-              src="/images/app-phone.jpeg"
-              alt="ExpressMaids mobile app screen"
-              width={280}
-              height={420}
-              className="mx-auto rounded-2xl object-contain"
+                src="/images/app-phone.png"
+                alt="ExpressMaids mobile app screen"
+                width={280}
+                height={420}
+                className="mx-auto object-contain"
+                priority
             />
           </div>
         </div>

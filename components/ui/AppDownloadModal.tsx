@@ -104,7 +104,7 @@ import { useEffect, useState } from "react";
 const playStoreUrl =
   "https://play.google.com/store/apps/details?id=com.afriwex.expressmaids";
 
-const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
+const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(
   playStoreUrl
 )}`;
 
@@ -131,83 +131,81 @@ export default function AppDownloadModal() {
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
-      <div className="relative w-full max-w-[360px] rounded-3xl bg-white p-5 text-center shadow-2xl md:max-w-[760px] md:p-7">
+      <div className="relative w-full max-w-[360px] rounded-3xl bg-white p-5 shadow-2xl md:max-w-[680px] md:p-6">
         <button
           onClick={closeModal}
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200"
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-xl text-gray-600 hover:bg-gray-200"
           aria-label="Close app download popup"
         >
-          ✕
+          ×
         </button>
 
-        <div className="grid items-center gap-5 md:grid-cols-2">
-          <div>
-            <div className="mx-auto flex justify-center">
-              <Image
-                src="/images/logo.png"
-                alt="ExpressMaids logo"
-                width={150}
-                height={50}
-                className="object-contain"
-              />
-            </div>
+        <div className="grid items-center gap-5 md:grid-cols-[1.1fr_0.9fr]">
+          <div className="text-center md:text-left">
+            <Image
+              src="/images/logo.png"
+              alt="ExpressMaids logo"
+              width={95}
+              height={40}
+              className="mx-auto h-auto md:mx-0"
+            />
 
-            <h2 className="mt-4 text-xl font-extrabold text-blue-900 md:text-2xl">
+            <h2 className="mt-4 text-2xl font-extrabold leading-tight text-blue-900 md:text-3xl">
               Download the ExpressMaids App
             </h2>
 
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
+            <p className="mt-3 text-sm leading-relaxed text-gray-600">
               Book services, shop products and get cleaning tips from your phone.
             </p>
 
-            <a
-              href={playStoreUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 block"
-              aria-label="Download ExpressMaids on Google Play"
-            >
-              <Image
-                src="/images/google-play-badge.webp"
-                alt="Get it on Google Play"
-                width={210}
-                height={65}
-                className="mx-auto h-auto w-[190px] md:w-[210px]"
-              />
-            </a>
+            <div className="mt-5 flex flex-col items-center gap-4 sm:flex-row md:items-center">
+              <a
+                href={playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download ExpressMaids on Google Play"
+              >
+                <Image
+                  src="/images/google-play-badge.webp"
+                  alt="Get it on Google Play"
+                  width={155}
+                  height={46}
+                  className="h-auto w-[155px]"
+                />
+              </a>
 
-            <a
-              href={playStoreUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-block"
-              aria-label="Scan QR code to download ExpressMaids app"
-            >
-              <img
-                src={qrCodeUrl}
-                alt="QR code to download ExpressMaids app"
-                width={125}
-                height={125}
-                className="mx-auto rounded-xl border border-gray-200 p-2"
-              />
-            </a>
+              <a
+                href={playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Scan QR code to download ExpressMaids app"
+              >
+                <img
+                  src={qrCodeUrl}
+                  alt="QR code to download ExpressMaids app"
+                  width={105}
+                  height={105}
+                  className="rounded-xl border border-gray-200 p-1"
+                />
+              </a>
+            </div>
 
             <button
               onClick={dontShowAgain}
-              className="mt-3 text-sm font-semibold text-gray-500 hover:text-blue-900"
+              className="mt-4 text-sm font-semibold text-gray-500 hover:text-blue-900"
             >
               Don&apos;t show again
             </button>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden justify-center md:flex">
             <Image
-                src="/images/app-phone.png"
-                alt="ExpressMaids mobile app screen"
-                width={280}
-                height={420}
-                className="mx-auto object-contain"
-                priority
+              src="/images/app-phone.png"
+              alt="ExpressMaids mobile app screen"
+              width={190}
+              height={310}
+              className="h-auto w-[185px] object-contain"
+              priority
             />
           </div>
         </div>

@@ -27,12 +27,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET is missing");
+    }
+
     const token = jwt.sign(
       {
         id: admin.id,
         email: admin.email,
       },
-      process.env.JWT_SECRET!,
+      process.env.JWT_SECRET,
       {
         expiresIn: "7d",
       }
@@ -51,13 +55,11 @@ export async function POST(req: NextRequest) {
     });
 
     return response;
-  } catch (error) {
-    console.error(error);
-
+  } catch (error: any) {
     return NextResponse.json(
       {
         success: false,
-        message: "Server error",
+        error: error.message,
       },
       {
         status: 500,

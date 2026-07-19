@@ -10,19 +10,11 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   const cookieStore = await cookies();
-
   const loggedIn = cookieStore.get("admin_logged_in");
 
-  console.log("========== ADMIN LAYOUT ==========");
-  console.log("Cookie:", loggedIn);
-  console.log("==================================");
-
   if (!loggedIn || loggedIn.value !== "true") {
-    console.log("Redirecting to /login");
     redirect("/login");
   }
-
-  console.log("Rendering Dashboard Layout");
 
   return (
     <div className="flex min-h-screen bg-slate-100">

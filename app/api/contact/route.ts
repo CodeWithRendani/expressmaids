@@ -1,42 +1,5 @@
-// import nodemailer from "nodemailer";
-// import { NextResponse } from "next/server";
-
-// export async function POST(req: Request) {
-//   try {
-//     const { name, email, message } = await req.json();
-
-//     const transporter = nodemailer.createTransport({
-//       host: process.env.SMTP_HOST,
-//       port: Number(process.env.SMTP_PORT),
-//       secure: false,
-//       auth: {
-//         user: process.env.SMTP_USER,
-//         pass: process.env.SMTP_PASS,
-//       },
-//     });
-
-//     await transporter.sendMail({
-//       from: `"ExpressMaids Website" <${process.env.SMTP_USER}>`,
-//       to: ["info@expressmaids.co.za", "vicky@expressmaids.co.za"],
-//       subject: `New Contact Form Message from ${name}`,
-//       html: `
-//         <h3>New Message from ExpressMaids Website</h3>
-//         <p><strong>Name:</strong> ${name}</p>
-//         <p><strong>Email:</strong> ${email}</p>
-//         <p><strong>Message:</strong><br/> ${message}</p>
-//       `,
-//     });
-
-//     return NextResponse.json({ success: true });
-
-//   } catch (error) {
-//     console.error(error);
-//     return NextResponse.json({ success: false }, { status: 500 });
-//   }
-// }
-
-import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {

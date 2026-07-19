@@ -6,7 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.expressmaids.co.za/sitemap.xml",
+    sitemap: [
+      "https://www.expressmaids.co.za/sitemap.xml",
+      "https://www.expressmaids.co.za/news-sitemap.xml",
+    ],
     host: "https://www.expressmaids.co.za",
   };
 }

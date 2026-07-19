@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import QuoteModal from "./QuoteModal";
 
@@ -18,15 +19,27 @@ function NavLinks({ onNavigate }: NavLinksProps) {
       <a href="#home" onClick={handleClick} className="hover:text-red-600">
         Home
       </a>
+
       <a href="#about" onClick={handleClick} className="hover:text-red-600">
         About
       </a>
+
       <a href="#services" onClick={handleClick} className="hover:text-red-600">
         Services
       </a>
+
+      <Link
+        href="/news"
+        onClick={handleClick}
+        className="hover:text-red-600"
+      >
+        News
+      </Link>
+
       <a href="#branches" onClick={handleClick} className="hover:text-red-600">
         Branches
       </a>
+
       <a href="#contact" onClick={handleClick} className="hover:text-red-600">
         Contact
       </a>

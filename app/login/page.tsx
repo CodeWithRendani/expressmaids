@@ -33,14 +33,15 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.message || "Login failed.");
+        setError(data.message || "Invalid email or password.");
         return;
       }
 
-      router.push("/admin/dashboard");
+      router.replace("/admin/dashboard");
       router.refresh();
-    } catch {
-      setError("Something went wrong.");
+    } catch (err) {
+      console.error(err);
+      setError("Unable to login. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -89,7 +90,7 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <div className="rounded-lg bg-red-100 border border-red-300 text-red-700 p-3 text-sm">
+            <div className="rounded-lg border border-red-300 bg-red-100 p-3 text-sm text-red-700">
               {error}
             </div>
           )}
@@ -97,7 +98,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-blue-600 text-white py-3 font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+            className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? "Signing In..." : "Sign In"}
           </button>

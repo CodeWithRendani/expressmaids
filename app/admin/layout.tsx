@@ -1,11 +1,21 @@
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 import Header from "@/components/admin/Header";
 import Sidebar from "@/components/admin/Sidebar";
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = await cookies();
+  const loggedIn = cookieStore.get("admin_logged_in");
+
+  if (!loggedIn || loggedIn.value !== "true") {
+    redirect("/login");
+  }
+
   return (
     <div className="flex min-h-screen bg-slate-100">
       <Sidebar />

@@ -10,7 +10,7 @@ export default function Header() {
       method: "POST",
     });
 
-    router.push("/admin/login");
+    router.replace("/login");
     router.refresh();
   }
 
@@ -22,7 +22,7 @@ export default function Header() {
 
       <button
         onClick={logout}
-        className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+        className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700 transition"
       >
         Logout
       </button>

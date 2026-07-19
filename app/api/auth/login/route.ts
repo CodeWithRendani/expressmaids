@@ -32,7 +32,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const passwordMatches = await bcrypt.compare(password, admin.password);
+    const passwordMatches = await bcrypt.compare(
+      password,
+      admin.password
+    );
 
     if (!passwordMatches) {
       return NextResponse.json(
@@ -54,19 +57,24 @@ export async function POST(req: NextRequest) {
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      maxAge: 60 * 60 * 24 * 7,
     });
 
     return response;
   } catch (error) {
-    console.error("Login Error:", error);
+    console.error("LOGIN ERROR:", error);
 
     return NextResponse.json(
       {
         success: false,
-        message: "Server error.",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Unknown server error",
       },
-      { status: 500 }
+      {
+        status: 500,
+      }
     );
   }
 }

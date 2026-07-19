@@ -1,6 +1,5 @@
-import { mkdir, writeFile } from "fs/promises";
+import { put } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
-import path from "path";
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,32 +19,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    const extension = file.name.split(".").pop() || "jpg";
 
-    const extension = file.name.split(".").pop();
+    const fileName = `articles/${Date.now()}.${extension}`;
 
-    const fileName = `${Date.now()}.${extension}`;
-
-    const uploadPath = path.join(
-      process.cwd(),
-      "public",
-      "uploads",
-      "articles",
-      fileName
-    );
-
-    // Automatically create the upload folder if it doesn't exist
-    await mkdir(path.dirname(uploadPath), {
-      recursive: true,
+    const blob = await put(fileName, file, {
+      access: "public",
     });
-
-    // Save the uploaded image
-    await writeFile(uploadPath, buffer);
 
     return NextResponse.json({
       success: true,
-      image: `/uploads/articles/${fileName}`,
+      image: blob.url,
     });
   } catch (error) {
     console.error("UPLOAD ERROR:", error);

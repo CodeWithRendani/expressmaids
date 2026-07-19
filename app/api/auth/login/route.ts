@@ -6,50 +6,41 @@ export async function POST(req: NextRequest) {
   try {
     const { email, password } = await req.json();
 
-    if (!email || !password) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Email and password are required.",
-        },
-        { status: 400 }
-      );
-    }
-
-    const admin = await prisma.admin.findUnique({
-      where: {
-        email,
-      },
-    });
-
-    if (!admin) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Invalid email or password.",
-        },
-        { status: 401 }
-      );
-    }
-
-    const passwordMatches = await bcrypt.compare(
-      password,
-      admin.password
+    const admins = await prisma.$queryRawUnsafe<any[]>(
+      "SELECT * FROM admin WHERE email = ? LIMIT 1",
+      email
     );
 
-    if (!passwordMatches) {
+    if (!admins || admins.length === 0) {
       return NextResponse.json(
         {
           success: false,
-          message: "Invalid email or password.",
+          message: "Admin not found.",
         },
-        { status: 401 }
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const admin = admins[0];
+
+    const valid = await bcrypt.compare(password, admin.password);
+
+    if (!valid) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Invalid password.",
+        },
+        {
+          status: 401,
+        }
       );
     }
 
     const response = NextResponse.json({
       success: true,
-      message: "Login successful.",
     });
 
     response.cookies.set("admin_logged_in", "true", {
@@ -62,15 +53,13 @@ export async function POST(req: NextRequest) {
 
     return response;
   } catch (error) {
-    console.error("LOGIN ERROR:", error);
+    console.error(error);
 
     return NextResponse.json(
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Unknown server error",
+          error instanceof Error ? error.message : "Unknown Error",
       },
       {
         status: 500,

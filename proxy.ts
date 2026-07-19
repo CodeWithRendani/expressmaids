@@ -1,25 +1,17 @@
-import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 
 export function proxy(req: NextRequest) {
-  const token = req.cookies.get("admin_token")?.value;
+  const loggedIn = req.cookies.get("admin_logged_in")?.value;
 
-  // Allow access to the login page
-  if (req.nextUrl.pathname === "/admin/login") {
+  // Allow login page
+  if (req.nextUrl.pathname === "/login") {
     return NextResponse.next();
   }
 
-  // Protect all admin routes
+  // Protect admin routes
   if (req.nextUrl.pathname.startsWith("/admin")) {
-    if (!token) {
-      return NextResponse.redirect(new URL("/admin/login", req.url));
-    }
-
-    try {
-      jwt.verify(token, process.env.JWT_SECRET!);
-      return NextResponse.next();
-    } catch {
-      return NextResponse.redirect(new URL("/admin/login", req.url));
+    if (loggedIn !== "true") {
+      return NextResponse.redirect(new URL("/login", req.url));
     }
   }
 

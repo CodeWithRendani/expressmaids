@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       email
     );
 
-    if (!admins || admins.length === 0) {
+    if (!admins.length) {
       return NextResponse.json(
         {
           success: false,
@@ -43,9 +43,11 @@ export async function POST(req: NextRequest) {
       success: true,
     });
 
-    response.cookies.set("admin_logged_in", "true", {
+    response.cookies.set({
+      name: "admin_logged_in",
+      value: "true",
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       sameSite: "lax",
       path: "/",
       maxAge: 60 * 60 * 24 * 7,
@@ -58,8 +60,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message:
-          error instanceof Error ? error.message : "Unknown Error",
+        message: error instanceof Error ? error.message : "Unknown error",
       },
       {
         status: 500,
